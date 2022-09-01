@@ -74,8 +74,8 @@ puts
 puts '****'
 puts
 
-whitelist = %w[lib contexts.testing.service]
-file_path = 'apps/in_memory/transport/testing_request.rb'
+whitelist = %w[lib contexts.toy_testing.service]
+file_path = 'apps/in_memory/transport/toy_testing_request.rb'
 FitnessFunctions::CrossContextCallsChecker.new.call(file_path, whitelist: whitelist)
 
 puts
@@ -86,7 +86,7 @@ whitelist = %w[lib]
 file_path = 'contexts/accounting/service.rb'
 FitnessFunctions::CrossContextCallsChecker.new.call(file_path, whitelist: whitelist)
 
-file_path = 'contexts/testing/service.rb'
+file_path = 'contexts/toy_testing/service.rb'
 FitnessFunctions::CrossContextCallsChecker.new.call(file_path, whitelist: whitelist)
 
 

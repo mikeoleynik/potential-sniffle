@@ -21,7 +21,7 @@ class Container < Dry::System::Container
       dir.memoize = true
 
       dir.namespaces.add 'accounting', key: 'contexts.accounting'
-      dir.namespaces.add 'testing', key: 'contexts.testing'
+      dir.namespaces.add 'toy_testing', key: 'contexts.toy_testing'
     end
 
     # simple transport
