@@ -2,6 +2,7 @@ require 'dry/system/container'
 require 'dry/system/container'
 require "dry/system/loader/autoloading"
 require "zeitwerk"
+require 'dry-struct'
 
 # General container class for project dependencies
 #
