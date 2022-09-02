@@ -5,6 +5,7 @@ module ToyTesting
 
       attribute :id, ToyTesting::Types::Integer
 
+      attribute :toys_ids, ToyTesting::Types::Array
       attribute :toys_count, ToyTesting::Types::Integer.constrained(lteq: 3).default(0)
     end
   end

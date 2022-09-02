@@ -30,7 +30,7 @@ Container.register_provider(:db) do
 
     register('persistance.toy_testing.repositories.account.rom', ToyTesting::Repositories::Account.new(container: rom))
     register('persistance.toy_testing.repositories.cat_toy.rom', ToyTesting::Repositories::CatToy.new(container: rom))
-    register('persistance.accounting.repositories.account.rom', Accounting::Repositories::CatToy.new(container: rom))
+    register('persistance.accounting.repositories.account.rom', Accounting::Repositories::Account.new(container: rom))
   end
 
   stop do

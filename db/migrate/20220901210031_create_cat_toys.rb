@@ -9,7 +9,9 @@ ROM::SQL.migration do
       column :comment, String, null: false
       column :tested, TrueClass, null: false
       column :negative, TrueClass, null: false
-      column :characteristics, TrueClass, null: false
+
+      column :characteristic_type, String
+      column :value, String
     end
   end
 end

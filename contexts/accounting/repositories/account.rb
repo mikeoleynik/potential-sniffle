@@ -1,10 +1,10 @@
-module ToyTesting
+module Accounting
   module Repositories
-    class CatToy < ROM::Repository[:cat_toys]
+    class Account < ROM::Repository[:accounts]
       commands :create, update: :by_pk
 
       def find(id)
-        cat_toys.by_pk(id).one
+        accounts.by_pk(id).one
       end
     end
   end

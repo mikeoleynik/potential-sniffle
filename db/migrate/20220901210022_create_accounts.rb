@@ -8,6 +8,7 @@ ROM::SQL.migration do
       # Accounting::Entities::Account
       column :point, Integer, null: false
       column :state, String, null: false
+      column :toys_ids, JSON
 
       # ToyTesting::Entities::Account
       column :toys_count, Integer, null: false
