@@ -12,6 +12,11 @@ gem 'dry-types', '~> 1.5.1'
 gem 'dry-struct', '1.0'
 
 gem 'zeitwerk'
+gem 'pry-byebug'
+gem 'rom'
+gem 'rom-sql'
+gem 'pg'
+gem 'dotenv', '~> 2.4'
 
 # fitness functions
 gem 'parser'
