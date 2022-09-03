@@ -37,7 +37,8 @@ class Container < Dry::System::Container
     config.component_dirs.add 'apps' do |dir|
       dir.memoize = true
 
-      dir.namespaces.add 'in_memory', key: 'in_memory'
+      dir.namespaces.add 'http', key: 'http'
+      dir.namespaces.add 'kafka', key: 'kafka'
     end
   end
 end

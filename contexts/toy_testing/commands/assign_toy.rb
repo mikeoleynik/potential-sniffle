@@ -24,13 +24,13 @@ module ToyTesting
         if account
           Success(account)
         else
-          Failure([:account_not_founded, { account_id: account_id }])
+          Failure([:account_not_founded, { error: 'account_not_founded', account_id: account_id }])
         end
       end
 
       def validate_account(account)
         if account.toys_count > 3
-          Failure([:many_toys, { account_id: account.id }])
+          Failure([:many_toys, { error: 'many_toys', account_id: account.id }])
         else
           Success(account)
         end
@@ -38,10 +38,10 @@ module ToyTesting
 
       def assign_toy(account, toy_id)
         ids = (account.toys_ids || []) + [toy_id]
-        toys_count = account.toys_count + 1
+        toys_count = account.toys_ids.include?(toy_id) ? account.toys_count : account.toys_count + 1
 
         if toys_count > 3
-          Failure([:many_toys, { toy_id: toy_id }])
+          Failure([:many_toys, { error: 'many_toys', account_id: account.id }])
         else
           Success(account_repo.update(account.id, toys_ids: ids.uniq, toys_count: toys_count))
         end

@@ -27,7 +27,7 @@ module ToyTesting
         if account
           Success(account)
         else
-          Failure([:account_not_founded, { account_id: account_id }])
+          Failure([:account_not_founded, { error: 'account_not_founded', account_id: account_id }])
         end
       end
 
@@ -37,15 +37,15 @@ module ToyTesting
         if cat_toy
           Success(cat_toy)
         else
-          Failure([:toy_not_founded, { cat_toy_id: toy_id }])
+          Failure([:toy_not_founded, { error: 'toy_not_founded', cat_toy_id: toy_id }])
         end
       end
 
       def validate_toy(toy)
         if toy.tested
-          Failure([:already_tested, { cat_toy_id: toy.id }])
+          Failure([:already_tested, { error: 'already_tested', cat_toy_id: toy.id }])
         elsif toy.negative
-          Failure([:negative_characteristics, { cat_toy_id: toy.id }])
+          Failure([:negative_characteristics, { error: 'negative_characteristics', cat_toy_id: toy.id }])
         else
           Success(toy)
         end

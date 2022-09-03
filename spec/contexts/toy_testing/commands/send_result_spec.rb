@@ -23,17 +23,18 @@ RSpec.describe ToyTesting::Commands::SendResult, type: :command do
   end
 
   context 'когда не находит аккаунт' do
+    let(:error_response) { [:account_not_founded, { error: 'account_not_founded', account_id: account_id }] }
     let(:account_repo) { instance_double('Accounting::Repositories::Account', find: nil) }
 
     it { expect(subject).to be_failure }
-    it { expect(subject.failure).to eq([:account_not_founded, { account_id: account_id }]) }
+    it { expect(subject.failure).to eq(error_response) }
   end
 
   context 'когда не находит игрушку' do
     let(:cat_toy_repo) { instance_double('ToyTesting::Repositories::CatToy', find: nil) }
 
     it { expect(subject).to be_failure }
-    it { expect(subject.failure).to eq([:toy_not_founded, { cat_toy_id: cat_toy_id }]) }
+    it { expect(subject.failure).to eq([:toy_not_founded, { error: 'toy_not_founded', cat_toy_id: cat_toy_id }]) }
   end
 
   context 'много игрушка уже протестирована' do
@@ -44,10 +45,11 @@ RSpec.describe ToyTesting::Commands::SendResult, type: :command do
     end
 
     it { expect(subject).to be_failure }
-    it { expect(subject.failure).to eq([:already_tested, { cat_toy_id: cat_toy_id }]) }
+    it { expect(subject.failure).to eq([:already_tested, { error: 'already_tested', cat_toy_id: cat_toy_id }]) }
   end
 
   context 'много игрушка имеет отрицательный отзыв' do
+    let(:error_response) { [:negative_characteristics, { error: 'negative_characteristics', cat_toy_id: cat_toy_id }] }
     let(:cat_toy) do
       ToyTesting::Entities::CatToy.new(
         id: 1, account_id: 1, comment: '', tested: false, negative: true, characteristic_type: 'playful', value: 'qw12'
@@ -55,6 +57,6 @@ RSpec.describe ToyTesting::Commands::SendResult, type: :command do
     end
 
     it { expect(subject).to be_failure }
-    it { expect(subject.failure).to eq([:negative_characteristics, { cat_toy_id: cat_toy_id }]) }
+    it { expect(subject.failure).to eq(error_response) }
   end
 end
