@@ -1,7 +1,16 @@
 require 'dry/system/container'
 require 'dry/system/container'
 require "dry/system/loader/autoloading"
-require "zeitwerk"
+require 'zeitwerk'
+require 'pry'
+
+require 'dry/types'
+Dry::Types.load_extensions(:monads)
+
+require 'dry-struct'
+
+require 'dry/monads'
+require 'dry/monads/do'
 
 # General container class for project dependencies
 #
@@ -21,7 +30,7 @@ class Container < Dry::System::Container
       dir.memoize = true
 
       dir.namespaces.add 'accounting', key: 'contexts.accounting'
-      dir.namespaces.add 'testing', key: 'contexts.testing'
+      dir.namespaces.add 'toy_testing', key: 'contexts.toy_testing'
     end
 
     # simple transport

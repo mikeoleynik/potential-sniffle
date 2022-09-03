@@ -74,19 +74,32 @@ puts
 puts '****'
 puts
 
-whitelist = %w[lib contexts.testing.service]
-file_path = 'apps/in_memory/transport/testing_request.rb'
+whitelist = %w[lib contexts.toy_testing.service]
+file_path = 'apps/in_memory/transport/toy_testing_request.rb'
 FitnessFunctions::CrossContextCallsChecker.new.call(file_path, whitelist: whitelist)
 
 puts
 puts '****'
 puts
 
-whitelist = %w[lib]
-file_path = 'contexts/accounting/service.rb'
+whitelist = %w[persistance.accounting.repositories.account.rom persistance.toy_testing.repositories.cat_toy.rom]
+file_path = 'contexts/accounting/commands/receive_info.rb'
 FitnessFunctions::CrossContextCallsChecker.new.call(file_path, whitelist: whitelist)
 
-file_path = 'contexts/testing/service.rb'
+puts
+puts '****'
+puts
+
+whitelist = %w[persistance.toy_testing.repositories.account.rom]
+file_path = 'contexts/toy_testing/commands/assign_toy.rb'
+FitnessFunctions::CrossContextCallsChecker.new.call(file_path, whitelist: whitelist)
+
+puts
+puts '****'
+puts
+
+whitelist = %w[persistance.toy_testing.repositories.account.rom persistance.toy_testing.repositories.cat_toy.rom]
+file_path = 'contexts/toy_testing/commands/send_result.rb'
 FitnessFunctions::CrossContextCallsChecker.new.call(file_path, whitelist: whitelist)
 
 
