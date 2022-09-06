@@ -28,7 +28,7 @@ module Accounting
         if account
           Success(account)
         else
-          Failure([:account_not_founded, { account_id: account_id }])
+          Failure([:account_not_founded, { error: 'account_not_founded', account_id: account_id }])
         end
       end
 
@@ -38,13 +38,13 @@ module Accounting
         if cat_toy
           Success(cat_toy)
         else
-          Failure([:toy_not_founded, { cat_toy_id: toy_id }])
+          Failure([:toy_not_founded, { error: 'toy_not_founded', cat_toy_id: toy_id }])
         end
       end
 
       def validate_account(account)
         if account.state == 'blocked'
-          Failure([:account_is_blocked, { account_id: account_id }])
+          Failure([:account_is_blocked, { error: 'account_is_blocked', account_id: account_id }])
         else
           Success(account)
         end
@@ -54,7 +54,7 @@ module Accounting
         if toy.tested
           Success(toy)
         else
-          Failure([:no_testing, { cat_toy_id: toy.id }])
+          Failure([:no_testing, { error: 'no_testing', cat_toy_id: toy.id }])
         end
       end
 

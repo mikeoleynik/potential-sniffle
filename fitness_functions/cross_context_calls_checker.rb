@@ -66,22 +66,6 @@ end
 puts
 puts
 
-whitelist = %w[lib contexts.accounting.service]
-file_path = 'apps/in_memory/transport/accounting_request.rb'
-FitnessFunctions::CrossContextCallsChecker.new.call(file_path, whitelist: whitelist)
-
-puts
-puts '****'
-puts
-
-whitelist = %w[lib contexts.toy_testing.service]
-file_path = 'apps/in_memory/transport/toy_testing_request.rb'
-FitnessFunctions::CrossContextCallsChecker.new.call(file_path, whitelist: whitelist)
-
-puts
-puts '****'
-puts
-
 whitelist = %w[persistance.accounting.repositories.account.rom persistance.toy_testing.repositories.cat_toy.rom]
 file_path = 'contexts/accounting/commands/receive_info.rb'
 FitnessFunctions::CrossContextCallsChecker.new.call(file_path, whitelist: whitelist)
@@ -100,6 +84,24 @@ puts
 
 whitelist = %w[persistance.toy_testing.repositories.account.rom persistance.toy_testing.repositories.cat_toy.rom]
 file_path = 'contexts/toy_testing/commands/send_result.rb'
+FitnessFunctions::CrossContextCallsChecker.new.call(file_path, whitelist: whitelist)
+
+puts
+puts '****'
+puts
+
+whitelist = %w[hanami.action.configuration contexts.toy_testing.commands.assign_toy contexts.toy_testing.commands.send_result]
+file_path = 'apps/http/actions/commands/assign_toy.rb'
+FitnessFunctions::CrossContextCallsChecker.new.call(file_path, whitelist: whitelist)
+file_path = 'apps/http/actions/commands/send_result.rb'
+FitnessFunctions::CrossContextCallsChecker.new.call(file_path, whitelist: whitelist)
+
+puts
+puts '****'
+puts
+
+whitelist = %w[hanami.action.configuration contexts.toy_testing.queries.all_toys_for_testing_query]
+file_path = 'apps/http/actions/queries/show_toys_for_testing.rb'
 FitnessFunctions::CrossContextCallsChecker.new.call(file_path, whitelist: whitelist)
 
 
